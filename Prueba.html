@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-3">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Page</title>
+</head>
+<body>
+    <header>
+        <h1>Chatbot con Ollama 3 </h1>
+    </header>
+    <main>
+        <p>Si tenes alguna Consulta</p>
+        <p>pregunta a nuestro asistente virtual</p>
+        <form id="chat-form"></form>
+            <label for="user-input">Escribe tu consulta:</label>
+            <input type="text" id="user-input" name="user-input" placeholder="Escribe aquí..." required>
+            <button type="button" onclick="sendQuery()">Enviar</button>
+        </form>
+        <div id="response-container"></div>
+
+        <script>
+            async function sendQuery() {
+            const userInput = document.getElementById('user-input').value;
+            const responseContainer = document.getElementById('response-container');
+
+            try {
+                const response = await fetch('https://api.ollama.ai/query', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer YOUR_API_KEY' // Replace YOUR_API_KEY with your actual API key
+                },
+                body: JSON.stringify({ query: userInput })
+                });
+
+                if (response.ok) {
+                const data = await response.json();
+                responseContainer.innerHTML = `<p>Respuesta: ${data.answer}</p>`;
+                } else {
+                responseContainer.innerHTML = `<p>Error al obtener respuesta. Código: ${response.status}</p>`;
+                }
+            } catch (error) {
+                responseContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+            }
+        </script>
+    </main>
+    <footer>
+        <p>&copy; Fixed Home</p>
+    </footer>
+</body>
+</html></html>
