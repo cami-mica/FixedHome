@@ -10,7 +10,7 @@
         <h1>Chatbot con Ollama 3 </h1>
     </header>
     <main>
-        <p>Si tenes alguna Consulta</p>
+        <p style="color: red;">Si tenes alguna Consulta</p>
         <p>pregunta a nuestro asistente virtual</p>
         <form id="chat-form"></form>
             <label for="user-input">Escribe tu consulta:</label>
@@ -29,7 +29,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer YOUR_API_KEY' // Replace YOUR_API_KEY with your actual API key
+                    'Authorization': 'Bearer YOUR_API_KEY' // Replace YOUR_API_KEY with your actual API key  
                 },
                 body: JSON.stringify({ query: userInput })
                 });
